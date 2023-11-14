@@ -15,10 +15,10 @@ __Usage__
 2. Open your web browser and navigate to: http://127.0.0.1:5000/stats/player/playerName
    
 Replace playerName with desired player's name. This will return a JSON response containing the player's statistics.
-Here are a few examples:   http://127.0.0.1:5000/stats/player/Luyanda%20Yohance
-                           http://127.0.0.1:5000/stats/player/Haji%20Nabulung
-                           http://127.0.0.1:5000/stats/player/Sifiso%20Abdalla
-                           http://127.0.0.1:5000/stats/player/Try%20This //this will open error page, player with name Try This doesn't exist!
+Here are a few examples:   http://127.0.0.1:5000/stats/player/Luyanda%20Yohance  
+                           http://127.0.0.1:5000/stats/player/Haji%20Nabulung  
+                           http://127.0.0.1:5000/stats/player/Sifiso%20Abdalla  
+                           http://127.0.0.1:5000/stats/player/Try%20This //this will open error page, player with name Try This doesn't exist!  
 
 __Customization__
 
