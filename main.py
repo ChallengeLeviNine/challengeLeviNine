@@ -1,7 +1,8 @@
 import csv
 import json
-from flask import Flask 
+from flask import Flask
 from statistics import statistics
+from prints import terminal_print
 
 app = Flask(__name__)
 player_data = None
@@ -12,7 +13,8 @@ def load_data(file_path):
     with open(file_path, 'r', encoding='utf-8') as csvfile:
         csv_reader = csv.reader(csvfile)
 
-        next(csv_reader)#skipping header
+        #skipping header
+        next(csv_reader)
 
         for row in csv_reader:
             data.append(row)
@@ -25,12 +27,15 @@ def get_stats(player_name):
     if player_data is None:
         player_data = load_data('L9HomeworkChallengePlayersInput.csv')
 
-    response = statistics(player_data, player_name)
+    response = json.dumps(statistics(player_data, player_name), ensure_ascii=False, indent=4)
+
+    terminal_print(response)
+    
     return app.response_class(
-        response=json.dumps(response, ensure_ascii=False, indent=4),
+        response=response,
         status=200,
         mimetype='application/json'
     )
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='127.0.0.1', port=5000, debug=True)
