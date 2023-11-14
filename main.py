@@ -9,19 +9,23 @@ player_data = None
 def load_data(file_path):
     data = []
     with open(file_path, 'r', encoding='utf-8') as csvfile:
-        csv_reader = csv.DictReader(csvfile)
+        csv_reader = csv.reader(csvfile)
+
+        next(csv_reader)#skipping header
+
         for row in csv_reader:
             data.append(row)
     return data
 
+
 # API endpoint
-@app.route('/stats', methods=['GET'])
-def get_stats():
+@app.route('/stats/player/<string:player_name>', methods=['GET'])
+def get_stats(player_name):
     global player_data
     if player_data is None:
         player_data = load_data('L9HomeworkChallengePlayersInput.csv')
 
-    response = statistics(player_data)
+    response = statistics(player_data, player_name)
     return response
 
 if __name__ == '__main__':
