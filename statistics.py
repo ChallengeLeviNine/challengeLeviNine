@@ -1,10 +1,13 @@
-from flask import jsonify, abort
+from flask import abort
 
 # calculating statistics for API endpoint
 def statistics(data, player_name):
+    #all variables is set to zero
     games_played = ftm = fta = pm2 = pa2 = pm3 = pa3 = reb = blk = ast = stl = tov = 0
 
+    #going through csv data, calcuating simple stats
     for player_stats in data:
+        #checking for name from path
         if player_stats[0] == player_name:
             games_played += 1
             ftm += int(player_stats[2])
@@ -19,10 +22,11 @@ def statistics(data, player_name):
             stl += int(player_stats[11])
             tov += int(player_stats[12])
 
-
+    #name doesn't exist
     if(games_played == 0):
         abort(404, description=f"Player not found!")
 
+    #format response
     response = {
         'playerName': player_name,
         'gamesPlayed': games_played,
@@ -30,19 +34,19 @@ def statistics(data, player_name):
             'freeThrows': {
                 'attempts' : fta,
                 'made' : ftm,
-                'shootingPercentage' : None,
+                'shootingPercentage' : ftm/fta*100,
             },
             'twoPoints' : {
                 'attempts' : pa2,
                 'made' : pm2,
-                'shootingPercentage' : None,
+                'shootingPercentage' : pm2/pa2*100,
             },
             'threePoints' : {
                 'attempts' : pa3,
                 'made' : pm3,
-                'shootingPercentage' : None,
+                'shootingPercentage' : pm3/pa3*100,
             },
-            'points' : None,
+            'points' : ftm+2*pm2+3*pm3,
             'rebounds' : reb,
             'blocks' : blk,
             'assists' : ast,
@@ -50,10 +54,10 @@ def statistics(data, player_name):
             'turnovers' : tov,
         },
         'advanced' : {
-            'valorization' : None,
-            'effectiveFieldGoalPercentage' : None,
-            'trueShootingPercentage' : None,
-            'hollingerAssistRatio' : None
+            'valorization' : (ftm+2*pm2+3*pm3+reb+blk+ast+stl)-(fta-ftm+pa2-pm2+pa3-pm3+tov),
+            'effectiveFieldGoalPercentage' : (pm2+pm3+0.5*pm3)/(pa2+pa3)*100,
+            'trueShootingPercentage' : (ftm+2*pm2+3*pm3)/(2*(pa2+pa3+0.475*fta))*100,
+            'hollingerAssistRatio' : ast/(pa2+pa3+0.475*fta+ast+tov)*100
         }
     }
     
