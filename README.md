@@ -18,7 +18,7 @@ Here are a few examples:
 http://127.0.0.1:5000/stats/player/Luyanda%20Yohance  
 http://127.0.0.1:5000/stats/player/Haji%20Nabulung  
 http://127.0.0.1:5000/stats/player/Sifiso%20Abdalla  
-http://127.0.0.1:5000/stats/player/Try%20This //this will open error page, player with name Try This doesn't exist!  
+http://127.0.0.1:5000/stats/player/Try%20This *(this will open error page, player with name Try This doesn't exist!)* 
 
 __Customization__  
 You can modifiy the CSV file ('L9HomeworkChallengePlayersInput.csv') with your own data.
