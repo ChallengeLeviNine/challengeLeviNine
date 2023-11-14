@@ -1,7 +1,7 @@
 import csv
 import json
 from flask import Flask
-from stat import statistics
+from response import generate_response
 from prints import terminal_print
 
 app = Flask(__name__)
@@ -27,7 +27,7 @@ def get_stats(player_name):
     if player_data is None:
         player_data = load_data('L9HomeworkChallengePlayersInput.csv')
 
-    response = json.dumps(statistics(player_data, player_name), ensure_ascii=False, indent=4)
+    response = json.dumps(generate_response(player_data, player_name), ensure_ascii=False, indent=4)
 
     terminal_print(response)
     

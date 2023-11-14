@@ -1,7 +1,7 @@
 from flask import abort
 
 # calculating statistics for API endpoint
-def statistics(data, player_name):
+def generate_response(data, player_name):
     #all variables is set to zero
     games_played = ftm = fta = pm2 = pa2 = pm3 = pa3 = reb = blk = ast = stl = tov = 0
 
