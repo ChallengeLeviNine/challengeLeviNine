@@ -1,4 +1,5 @@
 import csv
+import json
 from flask import Flask 
 from statistics import statistics
 
@@ -17,7 +18,6 @@ def load_data(file_path):
             data.append(row)
     return data
 
-
 # API endpoint
 @app.route('/stats/player/<string:player_name>', methods=['GET'])
 def get_stats(player_name):
@@ -26,7 +26,11 @@ def get_stats(player_name):
         player_data = load_data('L9HomeworkChallengePlayersInput.csv')
 
     response = statistics(player_data, player_name)
-    return response
+    return app.response_class(
+        response=json.dumps(response, ensure_ascii=False, indent=4),
+        status=200,
+        mimetype='application/json'
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)
