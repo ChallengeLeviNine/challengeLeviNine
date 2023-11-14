@@ -1,7 +1,7 @@
 import csv
 import json
 from flask import Flask
-from statistics import statistics
+from stat import statistics
 from prints import terminal_print
 
 app = Flask(__name__)
