@@ -34,19 +34,19 @@ def statistics(data, player_name):
             'freeThrows': {
                 'attempts' : fta,
                 'made' : ftm,
-                'shootingPercentage' : ftm/fta*100,
+                'shootingPercentage' : round(ftm/fta*100,1),
             },
             'twoPoints' : {
                 'attempts' : pa2,
                 'made' : pm2,
-                'shootingPercentage' : pm2/pa2*100,
+                'shootingPercentage' : round(pm2/pa2*100,1),
             },
             'threePoints' : {
                 'attempts' : pa3,
                 'made' : pm3,
-                'shootingPercentage' : pm3/pa3*100,
+                'shootingPercentage' : round(pm3/pa3*100,1),
             },
-            'points' : ftm+2*pm2+3*pm3,
+            'points' : round(ftm+2*pm2+3*pm3,1),
             'rebounds' : reb,
             'blocks' : blk,
             'assists' : ast,
@@ -54,10 +54,10 @@ def statistics(data, player_name):
             'turnovers' : tov,
         },
         'advanced' : {
-            'valorization' : (ftm+2*pm2+3*pm3+reb+blk+ast+stl)-(fta-ftm+pa2-pm2+pa3-pm3+tov),
-            'effectiveFieldGoalPercentage' : (pm2+pm3+0.5*pm3)/(pa2+pa3)*100,
-            'trueShootingPercentage' : (ftm+2*pm2+3*pm3)/(2*(pa2+pa3+0.475*fta))*100,
-            'hollingerAssistRatio' : ast/(pa2+pa3+0.475*fta+ast+tov)*100
+            'valorization' : round((ftm+2*pm2+3*pm3+reb+blk+ast+stl)-(fta-ftm+pa2-pm2+pa3-pm3+tov),1),
+            'effectiveFieldGoalPercentage' : round((pm2+pm3+0.5*pm3)/(pa2+pa3)*100,1),
+            'trueShootingPercentage' : round((ftm+2*pm2+3*pm3)/(2*(pa2+pa3+0.475*fta))*100,1),
+            'hollingerAssistRatio' : round(ast/(pa2+pa3+0.475*fta+ast+tov)*100,1)
         }
     }
     
