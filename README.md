@@ -1,14 +1,14 @@
 # Challenge LeviNine - Basketball Stats API
 
-Overview
+__Overview__
 
 This is a simple python script that iimplements a Basketball Stats API using Flask. The API reads player statistics from a CSV file, exposes an endpoint to retrieve player stats, and allows filtering by player name.
 
-Prerequisites
+__Prerequisites__
 
 Make sure you have Python installed on your system. You can download Python from the official Python website.
 
-Usage
+__Usage__
 
 1. Run the Flask app from terminal : python main.py
 
@@ -16,10 +16,10 @@ Usage
    
 Replace playerName with desired player's name. This will return a JSON response containing the player's statistics.
 
-Customization
+__Customization__
 
 You can modifiy the CSV file ('L9HomeworkChallengePlayersInput.csv') with your own data.
 
-Dependencies
+__Dependencies__
 
 Flask: Web framework for Python
